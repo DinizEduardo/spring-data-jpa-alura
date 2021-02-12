@@ -23,6 +23,7 @@ public class CrudCargoService {
             System.out.println("0 - sair");
             System.out.println("1 - salvar");
             System.out.println("2 - visualizar");
+            System.out.println("3 - editar");
 
             int option = scanner.nextInt();
 
@@ -33,11 +34,30 @@ public class CrudCargoService {
                 case 2:
                     visualizar(scanner);
                     break;
+                case 3:
+                    editar(scanner);
+                    break;
                 default:
                     system = false;
                     break;
             }
         }
+    }
+
+    private void editar(Scanner scanner) {
+        System.out.println("Qual id voce deseja editar: ");
+        int id = scanner.nextInt();
+
+        System.out.println("Qual a nova descricao ");
+        String descricao = scanner.next();
+
+        Cargo cargo = new Cargo();
+        cargo.setId(id);
+        cargo.setDescricao(descricao);
+
+        repository.save(cargo);
+
+        System.out.println("Alterado!");
     }
 
     private void visualizar(Scanner scanner) {
