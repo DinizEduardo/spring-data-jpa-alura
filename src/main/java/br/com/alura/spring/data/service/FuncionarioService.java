@@ -3,6 +3,10 @@ package br.com.alura.spring.data.service;
 import br.com.alura.spring.data.orm.Cargo;
 import br.com.alura.spring.data.orm.Funcionario;
 import br.com.alura.spring.data.repository.FuncionarioRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -100,7 +104,19 @@ public class FuncionarioService {
     }
 
     private void visualizar(Scanner scanner) {
-        Iterable<Funcionario> funcionarios = repository.findAll();
+        System.out.println("Qual pagina deseja ver");
+        int page = scanner.nextInt();
+
+        Pageable pageable = PageRequest.of(page, 5, Sort.unsorted());
+
+        Page<Funcionario> funcionarios = repository.findAll(pageable);
+
+        System.out.println(funcionarios);
+
+        System.out.println("Pagina atual: " + funcionarios.getNumber());
+
+        System.out.println("Total de funcionarios: "+ funcionarios.getTotalElements());
+
         funcionarios.forEach(System.out::println);
     }
 
