@@ -107,7 +107,7 @@ public class FuncionarioService {
         System.out.println("Qual pagina deseja ver");
         int page = scanner.nextInt();
 
-        Pageable pageable = PageRequest.of(page, 5, Sort.unsorted());
+        Pageable pageable = PageRequest.of(page, 5, Sort.by(Sort.Direction.ASC, "nome"));
 
         Page<Funcionario> funcionarios = repository.findAll(pageable);
 
