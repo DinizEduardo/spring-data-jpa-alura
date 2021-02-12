@@ -40,11 +40,33 @@ public class UnidadeService {
                 case 2:
                     visualizar();
                     break;
+                case 3:
+                    editar(scanner);
+                    break;
                 default:
                     system = false;
                     break;
             }
         }
+    }
+
+    private void editar(Scanner scanner) {
+        System.out.println("Digite o id que deseja alterar: ");
+        int id = scanner.nextInt();
+
+        System.out.println("Nome da unidade: ");
+        String descricao = scanner.next();
+
+        System.out.println("Endereco da unidade");
+        String endereco = scanner.next();
+
+        Unidade unidade = new Unidade();
+        unidade.setId(id);
+        unidade.setEndereco(endereco);
+        unidade.setDescricao(descricao);
+        repository.save(unidade);
+
+        System.out.println("Unidade alterada com sucesso");
     }
 
     private void visualizar() {
