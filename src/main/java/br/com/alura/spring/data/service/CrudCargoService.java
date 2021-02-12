@@ -24,6 +24,7 @@ public class CrudCargoService {
             System.out.println("1 - salvar");
             System.out.println("2 - visualizar");
             System.out.println("3 - editar");
+            System.out.println("4 - excluir");
 
             int option = scanner.nextInt();
 
@@ -37,11 +38,22 @@ public class CrudCargoService {
                 case 3:
                     editar(scanner);
                     break;
+                case 4:
+                    excluir(scanner);
+                    break;
                 default:
                     system = false;
                     break;
             }
         }
+    }
+
+    private void excluir(Scanner scanner) {
+        System.out.println("Qual id voce deseja excluri ");
+        int id = scanner.nextInt();
+
+        repository.deleteById(id);
+        System.out.println("Deletado!");
     }
 
     private void editar(Scanner scanner) {
