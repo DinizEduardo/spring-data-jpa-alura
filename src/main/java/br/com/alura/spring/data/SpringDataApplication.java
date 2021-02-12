@@ -4,6 +4,7 @@ import br.com.alura.spring.data.orm.Cargo;
 import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.service.CrudCargoService;
 import br.com.alura.spring.data.service.FuncionarioService;
+import br.com.alura.spring.data.service.RelatorioService;
 import br.com.alura.spring.data.service.UnidadeService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,13 +18,15 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudCargoService cargoService;
 	private final FuncionarioService funcionarioService;
 	private final UnidadeService unidadeService;
+	private final RelatorioService relatorioService;
 
 	private boolean system = true;
 
-	public SpringDataApplication(CrudCargoService cargoService, FuncionarioService funcionarioService, UnidadeService unidadeService) {
+	public SpringDataApplication(CrudCargoService cargoService, FuncionarioService funcionarioService, UnidadeService unidadeService, RelatorioService relatorioService) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeService = unidadeService;
+		this.relatorioService = relatorioService;
 	}
 
 	public static void main(String[] args) {
@@ -40,6 +43,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("1 - Cargo");
 			System.out.println("2 - Funcionario");
 			System.out.println("3 - Unidade");
+			System.out.println("4 - Relatorios");
 
 			int option = scanner.nextInt();
 
@@ -49,6 +53,8 @@ public class SpringDataApplication implements CommandLineRunner {
 				funcionarioService.inicial(scanner);
 			}else if(option == 3){
 				unidadeService.inicial(scanner);
+			}else if(option == 4) {
+				relatorioService.inicial(scanner);
 			}else {
 				system = false;
 			}
