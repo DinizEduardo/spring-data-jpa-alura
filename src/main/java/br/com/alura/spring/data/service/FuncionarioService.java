@@ -6,6 +6,7 @@ import br.com.alura.spring.data.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Scanner;
 
 @Service
@@ -40,11 +41,28 @@ public class FuncionarioService {
                 case 3:
                     editar(scanner);
                     break;
+                case 4:
+                    excluir(scanner);
+                    break;
                 default:
                     system = false;
                     break;
             }
         }
+    }
+
+    private void excluir(Scanner scanner) {
+        System.out.println("Digite o id que deseja excluir: ");
+        int id = scanner.nextInt();
+
+        Optional<Funcionario> funcionario = repository.findById(id);
+
+        if(funcionario.isPresent()) {
+            repository.deleteById(id);
+        }else {
+            System.out.println("Id não existe");
+        }
+
     }
 
     private void editar(Scanner scanner) {
