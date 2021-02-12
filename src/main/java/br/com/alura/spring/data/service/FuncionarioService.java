@@ -37,11 +37,48 @@ public class FuncionarioService {
                 case 2:
                     visualizar(scanner);
                     break;
+                case 3:
+                    editar(scanner);
+                    break;
                 default:
                     system = false;
                     break;
             }
         }
+    }
+
+    private void editar(Scanner scanner) {
+        System.out.println("Digite o id de funcionario que deseja alterar: ");
+        int id = scanner.nextInt();
+
+        System.out.println("Digite o nome do funcionario: ");
+        String nome = scanner.next();
+
+        System.out.println("Digite o cpf do funcionario: ");
+        String cpf = scanner.next();
+
+        System.out.println("Digite o salario do funcionario: ");
+        float salario = scanner.nextFloat();
+
+        System.out.println("Id do cargo do funcionario: ");
+        int idCargo = scanner.nextInt();
+
+        LocalDate hoje = LocalDate.now();
+
+        Cargo cargo = new Cargo();
+
+        cargo.setId(idCargo);
+
+        Funcionario funcionario = new Funcionario();
+        funcionario.setId(id);
+        funcionario.setCargo(cargo);
+        funcionario.setCpf(cpf);
+        funcionario.setDataContratacao(hoje);
+        funcionario.setSalario(salario);
+        funcionario.setNome(nome);
+
+        repository.save(funcionario);
+
     }
 
     private void visualizar(Scanner scanner) {
