@@ -29,7 +29,6 @@ public class UnidadeService {
             System.out.println("2 - visualizar");
             System.out.println("3 - editar");
             System.out.println("4 - excluir");
-            System.out.println("5 - adicionar funcionario");
 
             int option = scanner.nextInt();
 
@@ -43,11 +42,25 @@ public class UnidadeService {
                 case 3:
                     editar(scanner);
                     break;
+                case 4:
+                    excluir(scanner);
+                    break;
                 default:
                     system = false;
                     break;
             }
         }
+    }
+
+    private void excluir(Scanner scanner) {
+
+        System.out.println("Qual id voce deseja excluir");
+        int id = scanner.nextInt();
+
+        repository.deleteById(id);
+
+        System.out.println("Unidade excluida!");
+
     }
 
     private void editar(Scanner scanner) {
