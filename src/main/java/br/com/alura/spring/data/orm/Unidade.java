@@ -17,10 +17,7 @@ public class Unidade {
 
     private String endereco;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "funcionarios_unidades",
-            joinColumns = { @JoinColumn(name = "funcionario_id") },
-            inverseJoinColumns = {@JoinColumn(name = "unidade_id")})
+    @ManyToMany(mappedBy = "unidades", fetch = FetchType.EAGER)
     private List<Funcionario> funcionarios;
 
     public List<Funcionario> getFuncionarios() {
