@@ -37,11 +37,19 @@ public class UnidadeService {
                 case 1:
                     salvar(scanner);
                     break;
+                case 2:
+                    visualizar();
+                    break;
                 default:
                     system = false;
                     break;
             }
         }
+    }
+
+    private void visualizar() {
+        Iterable<Unidade> unidades = repository.findAll();
+        unidades.forEach(System.out::println);
     }
 
 
