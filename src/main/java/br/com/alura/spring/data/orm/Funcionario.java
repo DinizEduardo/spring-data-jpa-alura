@@ -19,6 +19,18 @@ public class Funcionario {
     @JoinColumn(name = "cargo_id", nullable = false)
     private Cargo cargo;
 
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", salario=" + salario +
+                ", dataContratacao=" + dataContratacao +
+                ", cargo=" + cargo.getDescricao() +
+                '}';
+    }
+
     public Cargo getCargo() {
         return cargo;
     }

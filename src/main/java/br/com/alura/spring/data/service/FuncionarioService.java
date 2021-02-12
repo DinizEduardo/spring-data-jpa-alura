@@ -34,6 +34,9 @@ public class FuncionarioService {
                 case 1:
                     salvar(scanner);
                     break;
+                case 2:
+                    visualizar(scanner);
+                    break;
                 default:
                     system = false;
                     break;
@@ -41,6 +44,10 @@ public class FuncionarioService {
         }
     }
 
+    private void visualizar(Scanner scanner) {
+        Iterable<Funcionario> funcionarios = repository.findAll();
+        funcionarios.forEach(System.out::println);
+    }
 
     private void salvar(Scanner scanner) {
 
