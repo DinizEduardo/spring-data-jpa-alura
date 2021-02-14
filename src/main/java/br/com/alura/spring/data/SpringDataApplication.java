@@ -2,10 +2,7 @@ package br.com.alura.spring.data;
 
 import br.com.alura.spring.data.orm.Cargo;
 import br.com.alura.spring.data.repository.CargoRepository;
-import br.com.alura.spring.data.service.CrudCargoService;
-import br.com.alura.spring.data.service.FuncionarioService;
-import br.com.alura.spring.data.service.RelatorioService;
-import br.com.alura.spring.data.service.UnidadeService;
+import br.com.alura.spring.data.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,14 +16,16 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final FuncionarioService funcionarioService;
 	private final UnidadeService unidadeService;
 	private final RelatorioService relatorioService;
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 
 	private boolean system = true;
 
-	public SpringDataApplication(CrudCargoService cargoService, FuncionarioService funcionarioService, UnidadeService unidadeService, RelatorioService relatorioService) {
+	public SpringDataApplication(CrudCargoService cargoService, FuncionarioService funcionarioService, UnidadeService unidadeService, RelatorioService relatorioService, RelatorioFuncionarioDinamico relatorioFuncionarioDinamico) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeService = unidadeService;
 		this.relatorioService = relatorioService;
+		this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico;
 	}
 
 	public static void main(String[] args) {
@@ -44,6 +43,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - Funcionario");
 			System.out.println("3 - Unidade");
 			System.out.println("4 - Relatorios");
+			System.out.println("5 - Relatorios dinamicos");
 
 			int option = scanner.nextInt();
 
@@ -55,6 +55,8 @@ public class SpringDataApplication implements CommandLineRunner {
 				unidadeService.inicial(scanner);
 			}else if(option == 4) {
 				relatorioService.inicial(scanner);
+			}else if(option == 5) {
+				relatorioFuncionarioDinamico.inicial(scanner);
 			}else {
 				system = false;
 			}
