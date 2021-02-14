@@ -1,6 +1,7 @@
 package br.com.alura.spring.data.service;
 
 import br.com.alura.spring.data.orm.Funcionario;
+import br.com.alura.spring.data.orm.FuncionarioProjecao;
 import br.com.alura.spring.data.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,13 +10,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
-@Service
-public class RelatorioService {
-    private boolean system = true;
+    @Service
+    public class RelatorioService {
+        private boolean system = true;
 
-    private final FuncionarioRepository repository;
+        private final FuncionarioRepository repository;
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public RelatorioService(FuncionarioRepository repository) {
         this.repository = repository;
@@ -28,6 +29,8 @@ public class RelatorioService {
             System.out.println("1 - Buscar por nome");
             System.out.println("2 - Busca por nome, data contratacao e salario maior");
             System.out.println("3 - Busca funcionario com data contratacao maior");
+            System.out.println("4 - Salarios");
+
 
             int option = scanner.nextInt();
 
@@ -40,6 +43,9 @@ public class RelatorioService {
                     break;
                 case 3:
                     buscarFuncionarioDataContratacaoMaior(scanner);
+                    break;
+                case 4:
+                    pesquisaFuncionarioSalario();
                     break;
                 default:
                     system = false;
@@ -87,5 +93,14 @@ public class RelatorioService {
         List<Funcionario> list = repository.findDataContratacaoMaior(data);
 
         list.forEach(System.out::println);
+    }
+
+    private void pesquisaFuncionarioSalario() {
+
+        List<FuncionarioProjecao> list = repository.findFuncionarioSalario();
+
+        list.forEach(f -> System.out.println("Funcionario: id: " + f.getId() +
+                " | Nome: " + f.getNome() + " | salario: " + f.getSalario()));
+
     }
 }
